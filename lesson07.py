@@ -96,30 +96,3 @@
 # конструктор, который выставляет свойство salary по умолчанию отличное от родительского класса
 # добавить деструктор в родительский класс
 # создать объекты обеих классов, вызвать методы work
-
-class Worker:
-    salary = 5000
-
-    def work(self):
-        print('Зарплата: ', self.salary)
-
-    def __del__(self):
-        print('Это деструктор')
-
-
-class Driver(Worker):
-    # salary = 300
-    def __init__(self):
-        self.salary = 500
-
-    def work(self):
-        print('Зарплата водителя: ', self.salary)
-
-
-obj_worker = Worker()
-obj_driver = Driver()
-obj_worker.work()
-obj_driver.work()
-
-obj_driver.salary = 15000
-obj_driver.work()
