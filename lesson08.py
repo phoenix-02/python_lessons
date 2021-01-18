@@ -5,7 +5,7 @@
 для того, чтобы его получить необходимо использовать функцию iter(),
 а для извлечения следующего элемента из итератора – функцию next().
 """
-num_list = {1, 2, 3, 4, 5}
+num_list = [1, 2, 3, 4, 5]
 
 for i in num_list:
     print(i)
@@ -69,14 +69,16 @@ print(next(s_iter1))
 """
 
 
-def simple_generator(val):
+def simple_generator(val=10):
     while val > 0:
         val -= 1
         yield val
 
+        yield val+23
 
 # Данная функция будет работать точно также, как класс SimpleIterator из предыдущего примера.
-gen_iter = simple_generator(6)
+gen_iter = simple_generator()
+
 
 """
     List comprehension
@@ -88,21 +90,25 @@ gen_iter = simple_generator(6)
 """
 some_list = [1, 2, 3, 4]
 new_list = [x ** 2 for x in some_list if x % 2 == 0]  # представление списка
-# print(new_list)
+print(new_list)
 
-new_generator = (x ** 2 for x in some_list if x % 2 == 0)  # выражение - генератор
+new_generator = list(x ** 2 for x in some_list if x % 2 == 0)  # выражение - генератор
+for i in new_generator:
+    print(i)
+print(new_generator)
+
 new_generator_list = []
-
-for x in new_generator:
+for x in some_list:
     if x % 2 == 0:
-        x *= 2
+        x **= 2
         new_generator_list.append(x)
 
 # print(new_generator_list)
 
 
 sentence = 'the rocket came back from mars'
-vowels = [i for i in sentence if i in 'aeiou']
+words_list = ['mars','came' ,'rocket','venera']
+vowels = [i for i in sentence.split(' ') if i in words_list]
 # ['e', 'o', 'e', 'a', 'e', 'a', 'o', 'a']
 
 """
@@ -117,11 +123,11 @@ lambda x: x
 (lambda x: x + 1)(2) = lambda 2: 2 + 1
                      = 2 + 1
                      = 3
-
 Лямбда-функция является выражением, оно может быть именована,
 поэтому вы можете написать предыдущий код следующим образом:
 """
-add_one = lambda x: x + 1
+
+add_one = 19 + (lambda x: x+ 200)(400)
 add_one(2)  # 3
 
 
@@ -132,8 +138,8 @@ def add_one(x):
 
 new_some_list = [1, 2, 3]
 
-# some_gen = lambda: x for x in new_some_list
-# print(some_gen)
+some_gen = [k ** 2 for k in new_some_list]
+print(some_gen)
 
 """
     map
@@ -143,6 +149,14 @@ new_some_list = [1, 2, 3]
 """
 list_of_words = ['one', 'two', 'list', '', 'dict']
 list_of_words = list(map(str.upper, list_of_words))
+list_of_words = [str.upper(k) for k in list_of_words]
+
+some_list = []
+for word in list_of_words:
+    word = str.upper(word)
+    some_list.append(word)
+
+
 
 # или вычислить число в какой либо степени с помощью pow()
 print(list(map(pow, [1, 2, 3], [11, 22, 33])))
@@ -160,10 +174,10 @@ def convert_to_str(x):
     return str(x)
 
 
-print(list(map(convert_to_str, [lambda x: x in new_some_list])))
+print(list(map(convert_to_str, new_some_list)))
 
 # или можем использовать встроенную функцию питона
-print(list(map(str, [lambda x: x in new_some_list])))
+print(list(map(str, new_some_list)))
 
 
 """
@@ -176,3 +190,4 @@ print(list(map(str, [lambda x: x in new_some_list])))
 
 """
 some_list = range(1, 1000, 7)
+
