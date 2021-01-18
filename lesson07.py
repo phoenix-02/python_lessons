@@ -1,15 +1,14 @@
 # Урок 7
 ########
 
-# def my_func:
-#     pass
-#
-# class Creature:
-#     pass
 
-# class Creature:
-#     age = 0
-#     sex = 'Male'
+class SomeClass:
+    pass
+
+
+class Creature:
+    age = 0
+    sex = 'Male'
 #
 # suschestvo = Creature() # создаст объект класса
 # bad_creature = Creature # НЕ ДЕЛАТЬ будет просто ссылаться на сам класс
